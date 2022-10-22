@@ -10,15 +10,15 @@
 # 開始使用
 1. 安裝 node.js 與 npm
 2. 專案 clone 到本地
-3. 開啟資料夾，輸入
-4. 繼續輸入 npm run dev
-5. 瀏覽器輸入localhost : 3000
-6. 結束請輸入Ctrl + C
+3. 繼續輸入 npm run dev
+4. 瀏覽器輸入localhost : 3000
+5. 結束請輸入Ctrl + C
 
 # 使用工具
 1. Express v4.17.1
-2. Express-handlebars v 4.0.2
+2. Express-handlebars v4.0.2
 3. Mongoose v5.13.15
 4. Body-parser v1.20.1
-5. Node.js v 16.17.0
+5. Node.js v16.17.0
 6. Front-awesome 
+7. npm v8.15.0
