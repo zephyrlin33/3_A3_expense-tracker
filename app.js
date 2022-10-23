@@ -4,6 +4,7 @@ const RList = require('./models/restaurant.js') // 載入 model
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override') // 載入 method-override
 
 const app = express()
 const port = 3000
@@ -25,6 +26,8 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))// 設定靜態路徑
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }))
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
 
 // 瀏覽全部餐廳
 app.get('/', (req, res) => {
@@ -87,7 +90,7 @@ app.post('/restaurants', (req, res) => {
   })
 
 //儲存新編輯
-app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+app.put('/restaurants/:restaurant_id/', (req, res) => {
     const {restaurant_id} = req.params
     RList.findByIdAndUpdate(restaurant_id, req.body)
       .then(()=> res.redirect('/'))
@@ -95,7 +98,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
   })
 
   // 刪除餐廳
-app.post("/restaurants/:restaurant_id/delete", (req, res) => {
+app.delete("/restaurants/:restaurant_id/", (req, res) => {
   const { restaurant_id } = req.params
   RList.findById (restaurant_id)
     .then(restaurants => restaurants.remove())
