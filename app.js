@@ -89,12 +89,7 @@ app.post('/restaurants', (req, res) => {
 //儲存新編輯
 app.post('/restaurants/:restaurant_id/edit', (req, res) => {
     const {restaurant_id} = req.params
-    const name = req.body.name
-    RList.findById(restaurant_id)
-      .then( restaurant => {
-        restaurant.name = name
-        restaurant.save()
-      })
+    RList.findByIdAndUpdate(restaurant_id, req.body)
       .then(()=> res.redirect('/'))
       .catch(error => console.log(error))
   })
