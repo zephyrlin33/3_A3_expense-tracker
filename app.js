@@ -1,10 +1,12 @@
 const express = require ('express')
 const mongoose = require('mongoose') // 載入 mongoose
-const RList = require('./models/restaurant.js') // 載入 model
+//const RList = require('/models/restaurant.js') // 載入 model
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
+//const restaurantList = require('./restaurant.json')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override') // 載入 method-override
+// 引用路由器
+const routes = require('./routes')
 
 const app = express()
 const port = 3000
@@ -28,83 +30,11 @@ app.use(express.static('public'))// 設定靜態路徑
 app.use(bodyParser.urlencoded({ extended: true }))
 // 設定每一筆請求都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
+// 將 request 導入路由器
+app.use(routes)
 
-// 瀏覽全部餐廳
-app.get('/', (req, res) => {
-       
-   RList.find() // 取出  model 裡的所有資料
-    .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
-    .catch(error => console.error(error)) // 錯誤處理
 
-  })
 
-// 搜尋設定
-app.get('/search', (req, res) => {
-  const keywords = req.query.keyword
-  const keyword=keywords.trim().toLowerCase()
-
-  RList.find({})
-    .lean()
-    .then(restaurants => {
-      const filterRestaurantsData = restaurants.filter(
-        data =>
-          data.name.toLowerCase().includes(keyword) ||
-          data.category.includes(keyword)
-      )
-      res.render("index", { restaurants: filterRestaurantsData, keywords })
-    })
-    .catch(err => console.log(err))
-})
-// 新增餐廳頁面
-app.get('/restaurants/new', (req, res) => {
-     res.render('new')
-  })
-
-  //瀏覽特定餐廳
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const {restaurant_id} = req.params
-    RList.findById(restaurant_id)
-    .lean()
-    .then(restaurant => res.render('show', { restaurant }))//注意傳進去的變數要與樣板一致
-    .catch(error => console.log(error))
- 
-})
-
-//編輯餐廳
-app.get('/restaurants/:restaurant_id/edit', (req, res) => {
-  const {restaurant_id} = req.params
-  
-  RList.findById(restaurant_id)
-    .lean()
-    .then(restaurant => res.render('edit', { restaurant }))
-    .catch(error => console.log(error))
-})
-
-//新增餐廳
-app.post('/restaurants', (req, res) => {
-    
-    return RList.create(req.body)     // 存入資料庫
-      .then(() => res.redirect('/')) // 新增完成後導回首頁
-      .catch(error => console.log(error))
-  })
-
-//儲存新編輯
-app.put('/restaurants/:restaurant_id/', (req, res) => {
-    const {restaurant_id} = req.params
-    RList.findByIdAndUpdate(restaurant_id, req.body)
-      .then(()=> res.redirect('/'))
-      .catch(error => console.log(error))
-  })
-
-  // 刪除餐廳
-app.delete("/restaurants/:restaurant_id/", (req, res) => {
-  const { restaurant_id } = req.params
-  RList.findById (restaurant_id)
-    .then(restaurants => restaurants.remove())
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
  
   // start and listen on the Express server
 app.listen(port, () => {
