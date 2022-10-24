@@ -1,3 +1,24 @@
+<!--Header-->
+<header>
+  <!-- navigation -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+          我的餐廳清單
+      </a>
+      <a href="./restaurants/new">
+        <button type="button" class="btn btn-outline-secondary">
+          Create
+        </button>
+      </a>
+    </div>
+  </nav>
+
+    <div class="banner"></div>
+</header>
+
+
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
@@ -17,10 +38,19 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
-  <a href="./restaurants/new">新增餐廳</a>
-  
+   
   
   <div class="row">
+    <div class="dropdown mb-3">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          名稱排序
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="/asc">A > Z</a></li>
+          <li><a class="dropdown-item" href="/desc">Z > A</a></li>
+        </ul>
+    </div>
     {{#each restaurants}}
     <div class="col-md-4 mx-auto ">
       <!--<div class="card-columns">-->

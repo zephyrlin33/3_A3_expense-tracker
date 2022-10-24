@@ -2,10 +2,7 @@ const express = require('express')
 const router = express.Router()
 const RList = require('../../models/restaurant')
 
-// 新增餐廳頁面
-router.get('/new', (req, res) => {
-    res.render('new')
- })
+
 
  //瀏覽特定餐廳
 router.get('/:restaurant_id', (req, res) => {

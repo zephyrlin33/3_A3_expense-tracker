@@ -12,6 +12,24 @@ router.get('/', (req, res) => {
      .catch(error => console.error(error)) // 錯誤處理
  
 })
+router.get('/asc', (req, res) => {
+       
+  RList.find() // 取出  model 裡的所有資料
+   .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
+   .sort({ name_en: 'asc' })
+   .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
+   .catch(error => console.error(error)) // 錯誤處理
+
+})
+router.get('/desc', (req, res) => {
+       
+  RList.find() // 取出  model 裡的所有資料
+   .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
+   .sort({ name_en: 'desc' })
+   .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
+   .catch(error => console.error(error)) // 錯誤處理
+
+})
 
 // 搜尋設定
 router.get('/search', (req, res) => {
@@ -30,6 +48,11 @@ router.get('/search', (req, res) => {
       })
       .catch(err => console.log(err))
   })
+
+  // 新增餐廳頁面
+router.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
 
 // 匯出路由模組
 module.exports = router

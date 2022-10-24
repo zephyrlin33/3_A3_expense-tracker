@@ -1,3 +1,8 @@
+select {
+   position: right;
+   width: 360px;
+}
+/*-----------------------------------------------------*/
 header {
     overflow: hidden;
   }

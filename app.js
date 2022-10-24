@@ -1,7 +1,7 @@
 const express = require ('express')
-//const RList = require('/models/restaurant.js') // 載入 model
+
 const exphbs = require('express-handlebars')
-//const restaurantList = require('./restaurant.json')
+
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override') // 載入 method-override
 
