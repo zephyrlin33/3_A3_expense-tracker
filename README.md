@@ -16,9 +16,11 @@
 # 開始使用
 1. 安裝 node.js 與 npm
 2. 專案 clone 到本地
-3. 繼續輸入 npm run dev
-4. 瀏覽器輸入localhost : 3000
-5. 結束請輸入Ctrl + C
+3. 環境變數設定 創建.env資料夾，依照.env.example的格式寫入資料
+4. 寫入種子資料 npm run seed
+5. 繼續輸入 npm run dev
+6. 瀏覽器輸入localhost : 3000
+7. 結束請輸入Ctrl + C
 
 # 使用工具
 1. Express v4.17.1
