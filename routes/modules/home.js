@@ -4,13 +4,7 @@ const router = express.Router()
 // 引用 Todo model
 const EList = require('../../models/expense')
 
-const CATEGORY = {
-  家居物業: "https://fontawesome.com/icons/home?style=solid",
-  交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
-  休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
-  餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
-  其他: "https://fontawesome.com/icons/pen?style=solid"
-}
+
 // 定義首頁路由
 router.get('/', (req, res) => {
 
@@ -31,21 +25,21 @@ router.get('/', (req, res) => {
 })
 
 // 搜尋設定
-router.get('/search', (req, res) => {
+router.post('/search', (req, res) => {
 
-  const keywords = req.query.keyword
-  const keyword = keywords.trim().toLowerCase()
   const userId = req.user._id
-
   EList.find({ userId })
     .lean()
     .then(expense => {
       const filterExpenseData = expense.filter(
         data =>
-          data.name.toLowerCase().includes(keyword) ||
-          data.category.includes(keyword)
+          data.categoryId == req.body.categoryId
       )
-      res.render("index", { expense: filterExpenseData, keywords })
+      let totalAmount = 0
+      for (let i = 0; i < filterExpenseData.length; i++) {
+        totalAmount += filterExpenseData[i].number
+      }
+      res.render("index", { expense: filterExpenseData, totalAmount })
     })
     .catch(err => console.log(err))
 })

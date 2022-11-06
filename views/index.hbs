@@ -3,7 +3,7 @@
   <div>
     <div class=" my-3 col-5 center">
       <form action="/search" method="POST">
-        <select class="form-select" name="category" id="category" onchange="this.form.submit()">
+        <select class="form-select" name="categoryId" id="category" onchange="this.form.submit()">
           <option disabled selected>類別</option>
           <option value="1">家居物業</option>
           <option value="2">交通出行</option>
@@ -23,35 +23,34 @@
     {{#each expense}}
     <div class="col-md-4 mx-auto ">
       <!--<div class="card-columns">-->
-      <a href="/expense/{{this._id}}" class="text-secondary">
-        <div class="card mb-3">
 
-          <div class="card-body p-3">
-            <h5 class="card-title mb-1">{{this.name}}</h5>
+      <div class="card mb-3">
 
-            <div class="mb-1 fw-light">
+        <div class="card-body p-3">
+          <h5 class="card-title mb-1">{{this.name}}</h5>
 
+          <div class="mb-1 fw-light">
 
+            <!--#icon-select this.categoryId 此處需要helper判斷使用哪一icon-->
+            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-van-shuttle"></i>
+            <i class="fa-solid fa-face-grin-beam"></i>
+            <i class="fa-solid fa-utensils"></i>
+            <i class="fa-solid fa-pen"></i>
+            {{this.categoryId}}
+          </div>
+          <div><i class="fa-solid fa-calendar-days"></i> {{ this.date}}</div>
+          <div>{{this.number}} 元</div>
 
-              <img src="">
-
-
-
-
-              {{this.categoryId}}
-            </div>
-            <div><i class="fa-solid fa-calendar-days"></i> {{ this.date}}</div>
-            <div>{{this.number}} 元</div>
-
-            <div class="text-end">
-              <a href="/expense/{{this._id}}/edit" class="btn btn-outline-primary my-2">Edit</a>
-              <form action="/expense/{{ this._id }}?_method=DELETE" method="POST" style="display">
-                <button type="submit" class="btn btn-outline-danger">delete</button>
-              </form>
-            </div>
+          <div class="text-end">
+            <a href="/expense/{{this._id}}/edit" class="btn btn-outline-primary my-2">Edit</a>
+            <form action="/expense/{{ this._id }}?_method=DELETE" method="POST" style="display">
+              <button type="submit" class="btn btn-outline-danger">delete</button>
+            </form>
           </div>
         </div>
-      </a>
+      </div>
+
     </div>
     {{/each}}
 
