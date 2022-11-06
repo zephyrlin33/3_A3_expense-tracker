@@ -34,6 +34,7 @@ router.get('/:restaurant_id/edit', (req, res) => {
 router.post('/', (req, res) => {
 
   const userId = req.user._id
+  
   req.body.userId =userId  //在req.body物件中新增userId properties
   return RList.create(req.body)     // 存入資料庫
     .then(() => res.redirect('/')) // 新增完成後導回首頁
