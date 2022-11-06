@@ -17,10 +17,17 @@ require('./config/mongoose')
 
 const app = express()
 const port = 3000
-
+const icon = ['<span style="color: Dodgerblue;"><i class="fa-solid fa-house fa-5x"></i></span>', 
+            '<span style="color: Dodgerblue;"><i class="fa-solid fa-van-shuttle fa-5x"></i></span>',
+            '<span style="color: Dodgerblue;"><i class="fa-solid fa-face-grin-beam fa-5x"></i></span>',
+            '<span style="color: Dodgerblue;"><i class="fa-solid fa-utensils fa-5x"></i></span>',
+            '<span style="color: Dodgerblue;"><i class="fa-solid fa-pen fa-5x"></i></span>']
 
 // 設定引擎
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' ,helpers: {
+  icon: function (a) {
+    return icon[a-1]
+  }}}))
 app.set('view engine', 'hbs')
 
 app.use(session({

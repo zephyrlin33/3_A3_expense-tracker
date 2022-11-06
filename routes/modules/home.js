@@ -31,7 +31,13 @@ router.post('/search', (req, res) => {
   EList.find({ userId })
     .lean()
     .then(expense => {
-      const filterExpenseData = expense.filter(
+      
+      if(req.body.categoryId==6){
+
+        return res.redirect('/')
+      }
+      else{
+        const filterExpenseData = expense.filter(
         data =>
           data.categoryId == req.body.categoryId
       )
@@ -39,7 +45,7 @@ router.post('/search', (req, res) => {
       for (let i = 0; i < filterExpenseData.length; i++) {
         totalAmount += filterExpenseData[i].number
       }
-      res.render("index", { expense: filterExpenseData, totalAmount })
+      res.render("index", { expense: filterExpenseData, totalAmount })}
     })
     .catch(err => console.log(err))
 })

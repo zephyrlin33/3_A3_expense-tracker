@@ -26,12 +26,14 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <i class="fa-solid fa-dollar-sign"></i> {{#if isAuthenticated}}{{ user.name}}'s{{/if}}記帳簿
+          <i class="fa-solid fa-dollar-sign"></i> {{#if isAuthenticated}}{{ user.name}}'s{{/if}} 記帳簿
         </a>
         <div class="text-right">
+          
+
           {{#if isAuthenticated}}
-          <a href="/expense/new"><button class="btn btn-outline-secondary">Create</button></a>
-          <a href="/users/logout"> <button class="btn btn-outline-secondary">Logout</button></a>
+          <a href="/expense/new"><button class="btn btn-outline-secondary">新增</button></a>
+          <a href="/users/logout"> <button class="btn btn-info">登出</button></a>
           {{else}}
           <a href="/users/login" class="btn btn-secondary btn-outline-light">Login</a>
           {{/if}}

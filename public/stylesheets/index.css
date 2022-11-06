@@ -8,12 +8,34 @@ form {
   
 }
 /*-----------------------------------------------------*/
+.float-child1 {
+  width: 40%;
+  float: left;
+  
+}  
+
+.float-child2 {
+  width: 30%;
+  float: left;
+  
+}  
+.float-child3 {
+  width: 30%;
+  float: left;
+  
+}  
+
+.text-center {
+  text-align: center;
+}
+
 header {
   overflow: hidden;
 }
 
 .center {
   margin: auto;
+  position: relative;
 }
 .navbar .navbar-brand {
   color: #4592af;

@@ -4,34 +4,26 @@ const EList = require('../../models/expense')
 
 
 
-// 新增餐廳頁面
+// 新增頁面
 router.get('/new', (req, res) => {
   res.render('new')
 })
 
-//瀏覽特定餐廳
-router.get('/:expense_id', (req, res) => {
-  const _id = req.params.expense_id
-  const userId = req.user._id
-  EList.findOne({ _id, userId })
-    .lean()
-    .then(expense => res.render('show', { expense }))//注意傳進去的變數要與樣板一致
-    .catch(error => console.log(error))
 
-})
-
-//顯示編輯特定餐廳
+//編輯頁面
 router.get('/:expense_id/edit', (req, res) => {
   const _id = req.params.expense_id
   const userId = req.user._id
-
+  
   EList.findOne({ _id, userId })
     .lean()
-    .then(expense => res.render('edit', { expense }))
+    .then(expense => {
+      const date=expense.date
+      res.render('edit', { expense , date})})
     .catch(error => console.log(error))
 })
 
-//新增
+//新增動作
 router.post('/', (req, res) => {
 
   const userId = req.user._id
@@ -42,7 +34,7 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//儲存新編輯
+//修改動作
 router.put('/:expense_id/', (req, res) => {
   const _id = req.params.expense_id
   EList.findByIdAndUpdate(_id, req.body)
@@ -50,7 +42,7 @@ router.put('/:expense_id/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// 刪除餐廳
+// 刪除動作
 router.delete("/:expense_id/", (req, res) => {
 
   const _id = req.params.expense_id

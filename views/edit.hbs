@@ -3,7 +3,8 @@
 
 
 <div class="container">
-  <h1 class="my-1 text-center">修改支出 {{expense.name}}</h1>
+  <h1 class="my-2 text-center">修改支出 {{expense.name}}</h1>
+  <div class="col-5 center">
   <form action="/expense/{{expense._id}}?_method=PUT" method="POST">
     <div class="mb-3">
       <label for="name" class="form-label">名稱<span class="text-danger">*</span></label>
@@ -23,11 +24,12 @@
         type="date"
         class="form-control"
         id="date"
-        placeholder="date"
         name="date"
-        value="{{expense.date}}"
+        value="{{date}}"
+        
         required
       />
+      
     </div>
     <div class="mb-3">
       <label for="category" class="form-label">類別<span class="text-danger">*</span></label>
@@ -67,4 +69,5 @@
       
     </div>
   </form>
+  </div>
 </div>
