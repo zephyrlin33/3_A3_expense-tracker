@@ -59,7 +59,6 @@ db.once('open', () => {
   ))//Promise.all end, Array.from end
 
 
-
     .then(() => {
       console.log('done.')
       process.exit()
