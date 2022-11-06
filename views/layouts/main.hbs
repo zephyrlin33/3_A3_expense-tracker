@@ -30,18 +30,14 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
           {{#if isAuthenticated}}{{ user.name}}'s{{/if}}餐廳清單
         </a>
-        {{#if isAuthenticated}}
-        <a href="/users/logout" class="btn btn-outline-secondary">
-          Logout
-        </a>
-        {{else}}
-        <a href="/users/login" class="btn btn-outline-secondary">Login</a>
-        {{/if}}
-        <a href="/restaurants/new">
-          <button type="button" class="btn btn-outline-secondary">
-            Create
-          </button>
-        </a>
+        <div class="text-right">
+          {{#if isAuthenticated}}
+          <a href="/restaurants/new"><button class="btn btn-outline-secondary">Create</button></a>
+          <a href="/users/logout"> <button class="btn btn-outline-secondary">Logout</button></a>
+          {{else}}
+          <a href="/users/login" class="btn btn-secondary btn-outline-light">Login</a>
+          {{/if}}
+        </div>
       </div>
     </nav>
 
