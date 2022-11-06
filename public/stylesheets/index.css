@@ -3,7 +3,10 @@ select {
   width: 360px;
 }
 
-
+form { 
+  display: inline; 
+  
+}
 /*-----------------------------------------------------*/
 header {
   overflow: hidden;
