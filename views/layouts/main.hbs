@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Restaurant List</title>
+  <title>記帳簿</title>
 
   <!-- link css files here -->
   <link rel="stylesheet" href="/stylesheets/bootstrap.css">
@@ -26,13 +26,11 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-          {{#if isAuthenticated}}{{ user.name}}'s{{/if}}餐廳清單
+          <i class="fa-solid fa-dollar-sign"></i> {{#if isAuthenticated}}{{ user.name}}'s{{/if}}記帳簿
         </a>
         <div class="text-right">
           {{#if isAuthenticated}}
-          <a href="/restaurants/new"><button class="btn btn-outline-secondary">Create</button></a>
+          <a href="/expense/new"><button class="btn btn-outline-secondary">Create</button></a>
           <a href="/users/logout"> <button class="btn btn-outline-secondary">Logout</button></a>
           {{else}}
           <a href="/users/login" class="btn btn-secondary btn-outline-light">Login</a>
@@ -41,7 +39,7 @@
       </div>
     </nav>
 
-    <div class="banner"></div>
+    
   </header>
 
 

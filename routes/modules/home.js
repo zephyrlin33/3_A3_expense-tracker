@@ -2,57 +2,50 @@
 const express = require('express')
 const router = express.Router()
 // 引用 Todo model
-const RList = require('../../models/restaurant')
+const EList = require('../../models/expense')
+
+const CATEGORY = {
+  家居物業: "https://fontawesome.com/icons/home?style=solid",
+  交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
+  休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
+  餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
+  其他: "https://fontawesome.com/icons/pen?style=solid"
+}
 // 定義首頁路由
 router.get('/', (req, res) => {
 
-  const userId = req.user._id  
+  const userId = req.user._id
 
-  RList.find({ userId }) // 取出  model 裡的所有資料
-    .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
-    .catch(error => console.error(error)) // 錯誤處理
+  EList.find({ userId })
+    .lean()
+    .then(expense => {
+      let totalAmount = 0
+      for (let i = 0; i < expense.length; i++) {
+        totalAmount += expense[i].number
+      }
 
-})
-router.get('/asc', (req, res) => {
-
-  const userId = req.user._id 
-
-  RList.find({userId}) // 取出  model 裡的所有資料
-    .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .sort({ name_en: 'asc' })
-    .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
-    .catch(error => console.error(error)) // 錯誤處理
-
-})
-router.get('/desc', (req, res) => {
-
-  const userId = req.user._id 
-
-  RList.find({userId}) // 取出  model 裡的所有資料
-    .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-    .sort({ name_en: 'desc' })
-    .then(restaurants => res.render('index', { restaurants })) // 將資料傳給 index 樣板
-    .catch(error => console.error(error)) // 錯誤處理
+      res.render('index', { expense, totalAmount })
+    })
+    .catch(error => console.error(error))
 
 })
 
 // 搜尋設定
 router.get('/search', (req, res) => {
-  
+
   const keywords = req.query.keyword
   const keyword = keywords.trim().toLowerCase()
-  const userId = req.user._id 
+  const userId = req.user._id
 
-  RList.find({userId})
+  EList.find({ userId })
     .lean()
-    .then(restaurants => {
-      const filterRestaurantsData = restaurants.filter(
+    .then(expense => {
+      const filterExpenseData = expense.filter(
         data =>
           data.name.toLowerCase().includes(keyword) ||
           data.category.includes(keyword)
       )
-      res.render("index", { restaurants: filterRestaurantsData, keywords })
+      res.render("index", { expense: filterExpenseData, keywords })
     })
     .catch(err => console.log(err))
 })

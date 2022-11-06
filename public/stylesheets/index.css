@@ -12,6 +12,9 @@ header {
   overflow: hidden;
 }
 
+.center {
+  margin: auto;
+}
 .navbar .navbar-brand {
   color: #4592af;
 }
@@ -79,10 +82,10 @@ header {
   font-size: 0.8rem;
 }
 
-.restaurant-show-title {
+.expense-show-title {
   position: relative;
   top: -100px;
-  color: white;
+  color: black;
   text-align: center;
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
