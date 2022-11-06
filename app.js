@@ -6,6 +6,10 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override') // 載入 method-override
 const flash = require('connect-flash')   // 提示錯訊息flash message
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const routes = require('./routes')// 引用路由器
 
 const usePassport = require('./config/passport')
@@ -20,7 +24,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
