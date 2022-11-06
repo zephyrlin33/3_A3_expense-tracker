@@ -26,3 +26,10 @@
 </div>
 {{/each}}
 {{/if}}
+
+{{#if alert_msg}}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{{alert_msg}}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
