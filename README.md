@@ -13,7 +13,7 @@
 9. 根據「類別」篩選支出；總金額的計算只會包括被篩選出來的支出總和
 
 ##安裝方法
-1. clone專案到本地 
+1. clone專案到本地，並請自行建立.env
 ```
 git clone https://github.com/zephyrlin33/expense-tracker_3_A3.git
 ```
