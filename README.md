@@ -14,13 +14,21 @@
 
 ##安裝方法
 1. clone專案到本地 
+```
 git clone https://github.com/zephyrlin33/expense-tracker_3_A3.git
+```
 2. 安裝npm 
+```
 npm install
+```
 3. 加載種子資料 
+```
 npm run seed
+```
 4. 開始執行app.js
+```
 npm run dev
+```
 5. 退出
 Ctrl +C
 
