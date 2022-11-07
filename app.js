@@ -16,7 +16,7 @@ const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 const icon = ['<span style="color: Dodgerblue;"><i class="fa-solid fa-house fa-5x"></i></span>', 
             '<span style="color: Dodgerblue;"><i class="fa-solid fa-van-shuttle fa-5x"></i></span>',
             '<span style="color: Dodgerblue;"><i class="fa-solid fa-face-grin-beam fa-5x"></i></span>',
@@ -62,6 +62,6 @@ app.use(routes)
 
 
   // start and listen on the Express server
-app.listen(port, () => {
-    console.log(`Express is listening on localhost:${port}`)
+app.listen(PORT, () => {
+    console.log(`Express is listening on localhost:${PORT}`)
   })
