@@ -32,3 +32,19 @@ npm run dev
 5. 退出
 Ctrl +C
 
+# 使用工具
+1. Express v4.17.1
+2. Express-handlebars v4.0.2
+3. Mongoose v5.13.15
+4. Body-parser v1.20.1
+5. Node.js v16.17.0
+6. Front-awesome 
+7. npm v8.15.0
+8. bcryptjs v^2.4.3
+9. connect-flash v0.1.1
+10. dotenv v8.2.0
+11. express-session v1.17.1
+12. method-override v3.0.0
+13. passport v0.4.1
+14. passport-facebook v3.0.0
+15. passport-local v1.0.0
